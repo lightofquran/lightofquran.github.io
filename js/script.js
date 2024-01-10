@@ -293,10 +293,36 @@ function simp_startScript() {
   });
 }
 
+const sort_by = (field, reverse, primer) => {
+
+  const key = primer ?
+    function(x) {
+      return primer(x[field])
+    } :
+    function(x) {
+      return x[field]
+    };
+
+  reverse = !reverse ? 1 : -1;
+
+  return function(a, b) {
+    return a = key(a), b = key(b), reverse * ((a > b) - (b > a));
+  }
+}
+
 var appendSongs = '';
 
 $.get('https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL2YvcyFBc0xuMmcyQXd6WkkxbFNVc1FUVW5Ed19WMlkwP2U9c0RsNGJJ/root?expand=children', function(data) {
 
+
+data.children.sort(sort_by('name', true, (a) =>  a.toUpperCase()));
+
+/* data.children.sort(function(a, b) {
+  var c = new Date(a.lastModifiedDateTime);
+  var d = new Date(b.lastModifiedDateTime);
+  return d-c;
+});
+ */
 $(data.children).each(function(index, element) {
 
   appendSongs += '<li><span class="simp-source" data-src="' + element['@content.downloadUrl'] + '" data-cover="">' + element.name.replace(".mp4","") + '</span><span class="simp-desc"></span></li>';
