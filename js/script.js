@@ -325,7 +325,7 @@ data.children.sort(sort_by('name', true, (a) =>  a.toUpperCase()));
  */
 $(data.children).each(function(index, element) {
 
-  appendSongs += '<li><span class="simp-source" data-src="' + element['@content.downloadUrl'] + '" data-cover="">' + element.name.replace(".mp3","") + '</span><span class="simp-desc"></span></li>';
+  appendSongs += '<li><span class="simp-source" data-src="' + element['@content.downloadUrl'] + '" data-cover="/images/quran.png">' + element.name.replace(".mp3","") + '</span><span class="simp-desc"></span></li>';
 });
 
 });
