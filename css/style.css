@@ -65,3 +65,9 @@ a,a:hover,a:visited{color:#ddd;text-decoration:none;}
 @media screen and (max-width:370px) {
 #simp .simp-time .simp-slash,#simp .simp-time .end-time{display:none;}
 }
+
+.color-change
+{
+    color: coral;
+    font-weight: bold;
+}
